@@ -1,0 +1,9 @@
+[project]
+name = "breaking-bad-rags"
+version = "0.1.0"
+description = "RAG (Retrieval-Augmented Generation) implementation using Breaking Bad plots as dataset."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "gradio>=6.15.2",
+]
