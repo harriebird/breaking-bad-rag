@@ -17,7 +17,7 @@ services:
       - db
 
   db:
-    image: pgvector:pg18-trixie
+    image: pgvector/pgvector:pg18-trixie
     container_name: bbrag-dev-db
     env_file:
       - config.env
