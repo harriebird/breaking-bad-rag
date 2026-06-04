@@ -5,7 +5,7 @@ from pgvector.sqlalchemy import VECTOR
 from pydantic import HttpUrl
 from typing import List
 
-from app.core import config
+from core import config
 
 class BaseModel(SQLModel):
     id : int | None = Field(default=None, primary_key=True, unique=True)
@@ -15,7 +15,9 @@ class BaseModel(SQLModel):
 class Paragraph(BaseModel, table=True):
     season: int | None = Field(default=None)
     episode: int | None = Field(default=None)
-    embedding: List[float] = Field(sa_type=VECTOR(256))
+    title: str = Field(max_length=100)
+    text: str = Field()
+    embedding: List[float] = Field(sa_type=VECTOR(768))
     plot_url: HttpUrl | None = Field(sa_type=AutoString)
 
 engine = create_engine(config.DB_URL)
