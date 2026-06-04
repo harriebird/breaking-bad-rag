@@ -21,4 +21,4 @@ RUN uv pip install -r pyproject.toml --system
 
 USER devuser
 
-CMD ["gradio", "main.py"]
+CMD ["gradio", "app/main.py"]
