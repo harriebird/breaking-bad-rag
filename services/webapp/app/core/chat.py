@@ -23,8 +23,8 @@ def do_search(query):
 def do_prompt(query, contexts):
     template = f"""
 Use only the provided contexts to answer the question.
-Make your answer concise.
-If you don't know the answer, just say I don't know.
+Make your answer concise in one paragraph.
+If you don't know the answer, just say "I don't know. Ask something about Breaking Bad.".
 
 Contexts:
 {"\n".join(context.text for context in contexts)}
@@ -45,6 +45,9 @@ def do_chat(text):
     references = "\n\nReferences:"
     for result in results:
         references += f"\nS{result.season:02d}E{result.episode:02d}: {result.title}\n Link: {result.plot_url}\n"
-    response += references
+
+    if not "don't know" in response:
+        response += references
+    
     return response
 
