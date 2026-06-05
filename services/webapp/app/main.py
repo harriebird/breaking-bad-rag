@@ -34,6 +34,12 @@ def receive_message(message, history):
             return "Clearing of embedding storage was successful!"
         return "Clearing of embedding storage as not successful!"
 
+    count = embed.count_db_content()
+    if count < 1:
+        return f"Can't answer you with the information from the knowledge base.\n" \
+               "There's existing records stored in the vector DB yet.\n" \
+               "Try `/start-embedding` first to add embedding records to the vector DB."
+
     response = chat.do_chat(message)
     return response
 
