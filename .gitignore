@@ -284,3 +284,4 @@ pyrightconfig.json
 
 # Custom ignores
 config.env
+.gradio/

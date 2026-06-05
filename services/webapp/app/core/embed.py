@@ -2,7 +2,7 @@ import re
 
 from ollama import Client
 import pandas as pd
-from sqlmodel import Session
+from sqlmodel import Session, select, func
 
 from core import config
 from models import engine, Paragraph
@@ -29,6 +29,13 @@ def split_plots_to_paragraphs(df):
 def load_dataset():
     plots_df = pd.read_csv(f"{config.PROJECT_ROOT}/data/dataset.csv")
     return plots_df
+
+def count_db_content():
+    count = 0
+    with Session(engine) as session:
+        count = session.exec(select(func.count()).select_from(Paragraph)).one()
+
+    return count
 
 def embed():
     with Session(engine) as session:
