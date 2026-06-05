@@ -4,8 +4,15 @@ from sqlmodel import SQLModel
 from core import embed, chat
 
 def receive_message(message, history):
+
     if "/start-embedding" in message:
+        count = embed.count_db_content()
+        if count > 0:
+            return f"Can't start embedding. There are {count} existing records. \n" \
+                   "Try `/clear-embedding` first to clear all the existing records."
+
         success = embed.embed()
+
         if success:
             return "Embedding and storage to vector DB was successful!"
         return "Embedding and storage to vector DB was not successful!"
