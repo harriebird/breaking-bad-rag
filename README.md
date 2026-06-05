@@ -1,6 +1,8 @@
 # breaking-bad-rag
 
-RAG (Retrieval-Augmented Generation) implementation using Breaking Bad plots as Knowledge Base.
+RAG (Retrieval-Augmented Generation) implementation using FOSS technologies with Breaking Bad plots as the Knowledge Base.
+
+![Breaking Bad RAG System Diagram](img/system-diagram.png)
 
 ## Requirements
 
