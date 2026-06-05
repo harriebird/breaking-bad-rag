@@ -5,7 +5,7 @@ from core import embed, chat
 
 def receive_message(message, history):
     if "/help" in message:
-        return "Welcome to Breaking Bad RAG! Here are some commands that will help:\n" \
+        return "Welcome to Breaking Bad RAG! Here are some commands that will help you navigate this app:\n" \
                "`/help` - displays this help message.\n" \
                "`/start-embedding` - starts embedding the Breaking Bad knowledge base and stores it to a vector DB.\n" \
                "`/clear-embedding` - clears the existing embedding records in the vector DB."
@@ -21,6 +21,18 @@ def receive_message(message, history):
         if success:
             return "Embedding and storage to vector DB was successful!"
         return "Embedding and storage to vector DB was not successful!"
+
+    if "/clear-embedding" in message:
+        count = embed.count_db_content()
+        if count < 1:
+            return f"Can't start clearing. There are no existing records.\n" \
+                   "Try `/start-embedding` first to add embedding records to the vector DB."
+
+        success = embed.clear_embed_store()
+
+        if success:
+            return "Clearing of embedding storage was successful!"
+        return "Clearing of embedding storage as not successful!"
 
     response = chat.do_chat(message)
     return response

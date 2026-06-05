@@ -2,7 +2,7 @@ import re
 
 from ollama import Client
 import pandas as pd
-from sqlmodel import Session, select, func
+from sqlmodel import Session, select, func, delete
 
 from core import config
 from models import engine, Paragraph
@@ -54,6 +54,12 @@ def embed():
             new_paragraph.text = paragraph["text"]
             new_paragraph.embedding = response.embeddings[0]
             session.add(new_paragraph)
-            session.commit()
             print(f"S{paragraph["season"]:02d}E{paragraph["episode"]:02d} was successfully embedded!")
+        session.commit()
+        return True
+
+def clear_embed_store():
+    with Session(engine) as session:
+        session.exec(delete(Paragraph))
+        session.commit()
         return True
