@@ -5,7 +5,7 @@ from pgvector.sqlalchemy import VECTOR
 from pydantic import HttpUrl
 from typing import List
 
-from core import config
+from app.core import config
 
 class BaseModel(SQLModel):
     id : int | None = Field(default=None, primary_key=True, unique=True)
