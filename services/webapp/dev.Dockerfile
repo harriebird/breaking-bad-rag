@@ -3,6 +3,7 @@ FROM ghcr.io/astral-sh/uv:python3.14-trixie
 ENV PYTHONBUFFERED=1
 ENV PYTHONDONTREWRITEBYTECODE=1
 ENV UV_SYSTEM_PYTHON=1
+ENV PYTHONPATH="/code:${PYTHONPATH}"
 
 WORKDIR /code
 
@@ -19,6 +20,11 @@ COPY . .
 
 RUN uv pip install -r pyproject.toml --system
 
+COPY start-dev.sh /start-dev.sh
+
+RUN dos2unix /start-dev.sh
+RUN chmod +x /start-dev.sh
+
 USER devuser
 
-CMD ["gradio", "app/main.py"]
+CMD ["/start-dev.sh"]
