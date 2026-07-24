@@ -25,6 +25,12 @@ case $1 in
     sudo rm -r $(which ollama | tr 'bin' 'lib')
     sudo rm $(which ollama)
     ;;
-#  *)
-#    ;;
+  *)
+    echo "Usage:
+    ./setup.sh install - installs Ollama and pull the models needed for this project.
+    ./setup.sh updates - updates Ollama installed in the system.
+    ./setup.sh pullmodel - pulls the embeddinggemma-300m and gemma-3-1b-it models.
+    ./setup.sh uninstall - removes the models and uninstalls Ollama from the system.
+    "
+    ;;
 esac

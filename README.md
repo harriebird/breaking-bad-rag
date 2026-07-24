@@ -14,6 +14,8 @@ RAG (Retrieval-Augmented Generation) implementation using FOSS technologies with
 ### Development
 
 1. Install Docker with Docker Compose and Ollama.
+   - An installer script for Ollama and the models used for this project is provided inside the `services/ollama` directory.
+   - To install and pull the models using the script, use the command `./setup.sh install` found inside the ollama folder.
 2. Clone this repository.
 3. In Ollama, make sure to pull an Embedding model and a Language model.
 4. Make a copy of `config.env.example` and name it to `config.env`. Modify or set the configuration inside the said file.
